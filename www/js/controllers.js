@@ -16,6 +16,11 @@ angular.module('starter.controllers', [])
 
       localStorage.noteHistory = JSON.stringify(local);
     },
+    getLocalStorage: function(){
+      var local = JSON.parse(localStorage.noteHistory);
+      console.log(local);
+      return local;
+    },
     initNoteHistory: function(){
       if(localStorage.noteHistory === undefined){
         localStorage.noteHistory = "{}"
@@ -92,6 +97,8 @@ angular.module('starter.controllers', [])
   $localStorageInteractions.initNoteHistory();
   $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
   $localStorageInteractions.setLocalStorage('ben', 'iAmBen');
+  self.allNotes = $localStorageInteractions.getLocalStorage();
+
 //get the noteHistory object from localStorage and save as object
 //ng-repeat key,value in noteObject
 //on click change view to individual note page and pass in value to body
