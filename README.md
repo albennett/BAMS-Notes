@@ -1,3 +1,3 @@
 # BAMS-Note
-A Notes Apps for iPhone and Android
+A Notes App for iPhone and Android
 
