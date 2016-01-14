@@ -1,5 +1,23 @@
 angular.module('starter.controllers', [])
 
+.factory('localStorageInteractions', function() {
+  var matt = 'matt';
+
+  return {
+    getMatt: function() {
+      console.log(matt);
+      return matt;
+    },
+    setLocalStorage: function(key, value) {
+      var note = {
+        'title': key,
+        body: value
+      }
+      localStorage[key] = JSON.stringify(note);
+    }
+  }
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -42,6 +60,7 @@ angular.module('starter.controllers', [])
   };
 })
 
+
 /*
   Have a factory for getting and setting body, of each key value pair in local
    storage, and also saving things to local storage.
@@ -61,14 +80,15 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('SidebarCtrl', function(){
+.controller('SidebarCtrl', ['localStorageInteractions',function($localStorageInteractions){
 
   var self = this;
-
+  $localStorageInteractions.getMatt();
+  $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
 //get the noteHistory object from localStorage and save as object
 //ng-repeat key,value in noteObject
 //on click change view to individual note page and pass in value to body
 
 
 
-})
+}])
