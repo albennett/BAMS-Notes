@@ -13,7 +13,6 @@ angular.module('starter.controllers', [])
     setLocalStorage: function(key, value) {
       var local = JSON.parse(localStorage.noteHistory);
 
-
       var note = {
         'title': key,
         body: value
@@ -84,14 +83,35 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   })
 
-.controller('NotesCtrl', ['localStorageInteractions', function($localStorageInteractions) {
+.controller('NotesCtrl', ['localStorageInteractions',function($localStorageInteractions){
   var notes = this;
   notes.input = '';
   notes.title = '';
+  console.log("notes.title", notes.title);
+  console.log("notes.input", notes.input);
+
+  notes.setLocalStorage = function() {
+      var local = JSON.parse(localStorage.noteHistory);
+
+      var note = {
+        'title': notes.title,
+        body: notes.input
+      }
+      local[notes.title] = note;
+
+      localStorage.noteHistory = JSON.stringify(local);
+    },
+
+  // notes.setIt = function(){
+  //   var key = notes.title;
+  //   var value = notes.input;
+  //   localStorage.setItem(key, value);
+
+  // }
 
 
+  // notes.setLocal = $localStorageInteractions.setLocalStorage();
 
-  notes.setLocal = $localStorageInteractions.setLocalStorage(notes.title, notes.input);
   notes.something = $localStorageInteractions.getTitle();
   console.log("notesSomethign ", notes.something);
 

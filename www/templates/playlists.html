@@ -10,13 +10,13 @@
       </label>
       <label class="item item-input item-stacked-label note-input">
         <span class="input-label">Note</span>
-        <h1>{{notes.something}}</h1>
+        <!-- <h1>{{notes.something}}</h1> -->
         <input type="text" placeholder="Note Input" ng-model="notes.input">
         <!-- <div ng-show="addNote.$submitted || addNote.title.$touched"> -->
           <!-- <span ng-show="addNote.title.$error.required">Input is required</span> -->
       </label>
       <!-- </form> -->
-      <button class="button button-light" type="submit" ng-click="setLocal()" ng-disabled="addNote.$invalid">
+      <button class="button button-light" type="submit" ng-click="notes.setLocalStorage()" ng-disabled="addNote.$invalid">
         Save Note
       </button>
     </div>
