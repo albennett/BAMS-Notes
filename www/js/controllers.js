@@ -5,12 +5,23 @@ angular.module('starter.controllers', [])
   return {
     // Sets a localStorage key value pair. Accepts two arguments. First argument is the key, second is the value.
     setLocalStorage: function(key, value) {
+      var local = JSON.parse(localStorage.noteHistory);
+
+
       var note = {
         'title': key,
         body: value
       }
-      localStorage[key] = JSON.stringify(note);
+      local[key] = note;
+
+      localStorage.noteHistory = JSON.stringify(local);
+    },
+    initNoteHistory: function(){
+      if(localStorage.noteHistory === undefined){
+        localStorage.noteHistory = "{}"
+      }
     }
+
   }
 })
 
@@ -78,7 +89,9 @@ angular.module('starter.controllers', [])
 
   var self = this;
   // Testing localStorage
+  $localStorageInteractions.initNoteHistory();
   $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
+  $localStorageInteractions.setLocalStorage('ben', 'iAmBen');
 //get the noteHistory object from localStorage and save as object
 //ng-repeat key,value in noteObject
 //on click change view to individual note page and pass in value to body
