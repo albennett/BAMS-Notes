@@ -2,7 +2,13 @@ angular.module('starter.controllers', [])
 
 .factory('localStorageInteractions', function() {
 
+  //private
+  var title;
+  var body;
+
   return {
+
+
     // Sets a localStorage key value pair. Accepts two arguments. First argument is the key, second is the value.
     setLocalStorage: function(key, value) {
       var local = JSON.parse(localStorage.noteHistory);
@@ -25,10 +31,49 @@ angular.module('starter.controllers', [])
       if(localStorage.noteHistory === undefined){
         localStorage.noteHistory = "{}"
       }
+    },
+    setTitle : function(key){
+      console.log(key);
+      title = key;
+    },
+    getTitle: function(){
+      return title
+    },
+     setBody : function(value){
+      body = value;
+    },
+    getBody: function(){
+      console.log(body);
+      return body;
     }
 
   }
 })
+.controller('SidebarCtrl', ['localStorageInteractions',function($localStorageInteractions){
+
+  var self = this;
+  // Testing localStorage
+  $localStorageInteractions.initNoteHistory();
+  $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
+  $localStorageInteractions.setLocalStorage('ben', 'iAmBen');
+  self.allNotes = $localStorageInteractions.getLocalStorage();
+
+  self.updateNotePage = function(key,value){
+    $localStorageInteractions.setTitle(key);
+    $localStorageInteractions.setBody(value);
+   $localStorageInteractions.getBody();
+   $localStorageInteractions.getTitle();
+  }
+
+
+
+//get the noteHistory object from localStorage and save as object
+//ng-repeat key,value in noteObject
+//on click change view to individual note page and pass in value to body
+
+
+
+}])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -44,7 +89,11 @@ angular.module('starter.controllers', [])
   notes.input = '';
   notes.title = '';
 
+
+
   notes.setLocal = $localStorageInteractions.setLocalStorage(notes.title, notes.input);
+  notes.something = $localStorageInteractions.getTitle();
+  console.log("notesSomethign ", notes.something);
 
   // Form data for the login modal
 
@@ -59,21 +108,6 @@ angular.module('starter.controllers', [])
 
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-})
-
-.controller('SidebarCtrl', ['localStorageInteractions',function($localStorageInteractions){
-
-  var self = this;
-  // Testing localStorage
-  $localStorageInteractions.initNoteHistory();
-  $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
-  $localStorageInteractions.setLocalStorage('ben', 'iAmBen');
-  self.allNotes = $localStorageInteractions.getLocalStorage();
-
-//get the noteHistory object from localStorage and save as object
-//ng-repeat key,value in noteObject
-//on click change view to individual note page and pass in value to body
+});
 
 
-
-}])

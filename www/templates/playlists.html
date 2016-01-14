@@ -1,4 +1,4 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="Playlists" ng-controller="NotesCtrl as notes">
   <ion-content>
     <div class="list">
       <!-- <form name="addNote" novalidate> -->
@@ -10,6 +10,7 @@
       </label>
       <label class="item item-input item-stacked-label note-input">
         <span class="input-label">Note</span>
+        <h1>{{notes.something}}</h1>
         <input type="text" placeholder="Note Input" ng-model="notes.input">
         <!-- <div ng-show="addNote.$submitted || addNote.title.$touched"> -->
           <!-- <span ng-show="addNote.title.$error.required">Input is required</span> -->

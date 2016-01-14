@@ -18,8 +18,8 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-repeat="(key,value) in sidebar.allNotes">
-          {{key}}
+        <ion-item menu-close ng-repeat="(key,value) in sidebar.allNotes" ng-click="sidebar.updateNotePage(key,value)">
+          <h3>{{key}}</h3>
         </ion-item>
       </ion-list>
     </ion-content>
