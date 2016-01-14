@@ -9,6 +9,7 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -41,6 +42,11 @@ angular.module('starter.controllers', [])
   };
 })
 
+/*
+  Have a factory for getting and setting body, of each key value pair in local
+   storage, and also saving things to local storage.
+*/
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
@@ -53,4 +59,16 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
+
+.controller('SidebarCtrl', function(){
+
+  var self = this;
+
+//get the noteHistory object from localStorage and save as object
+//ng-repeat key,value in noteObject
+//on click change view to individual note page and pass in value to body
+
+
+
+})
