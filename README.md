@@ -1,1 +1,2 @@
-# BAMS-Notes
+# BAMS-Note
+A Notes Apps
