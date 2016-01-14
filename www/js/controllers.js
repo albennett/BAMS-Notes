@@ -1,13 +1,9 @@
 angular.module('starter.controllers', [])
 
 .factory('localStorageInteractions', function() {
-  var matt = 'matt';
 
   return {
-    getMatt: function() {
-      console.log(matt);
-      return matt;
-    },
+    // Sets a localStorage key value pair. Accepts two arguments. First argument is the key, second is the value.
     setLocalStorage: function(key, value) {
       var note = {
         'title': key,
@@ -83,7 +79,7 @@ angular.module('starter.controllers', [])
 .controller('SidebarCtrl', ['localStorageInteractions',function($localStorageInteractions){
 
   var self = this;
-  $localStorageInteractions.getMatt();
+  // Testing localStorage
   $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
 //get the noteHistory object from localStorage and save as object
 //ng-repeat key,value in noteObject
