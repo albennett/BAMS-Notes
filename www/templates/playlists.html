@@ -1,26 +1,21 @@
 <ion-view view-title="Playlists">
   <ion-content>
-<!--     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item>
-    </ion-list>
-
- -->
     <div class="list">
       <!-- <form name="addNote" novalidate> -->
       <label class="item item-input item-stacked-label">
-        <span class="input-label" required=""/>Title</span>
-        <input type="text" placeholder="Title">
-        <!-- <div ng-show="addForm.$submitted || addForm.title.$touched"> -->
-          <span ng-show="addForm.title.$error.required">Title is required</span>
+        <span class="input-label">Title</span>
+        <input type="text" placeholder="Title" ng-model="notes.title" name="title-input" required=""/>
+        <!-- <div ng-show="addNote.$submitted || addNote.title-input.$touched"> -->
+          <!-- <span ng-show="addNote.title-input.$error.required">Title is required</span> -->
       </label>
       <label class="item item-input item-stacked-label">
-        <span class="input-label" ng-model="notes.input">NOTES Input</span>
-        <input type="text" placeholder="Notes">
+        <span class="input-label">NOTES Input</span>
+        <input type="text" placeholder="Notes" ng-model="notes.input">
+        <!-- <div ng-show="addNote.$submitted || addNote.title.$touched"> -->
+          <!-- <span ng-show="addNote.title.$error.required">Input is required</span> -->
       </label>
       <!-- </form> -->
-      <button class="button button-light">
+      <button class="button button-light" type="submit" ng-click="setLocal()" ng-disabled="addNote.$invalid">
         Save Note
       </button>
     </div>
