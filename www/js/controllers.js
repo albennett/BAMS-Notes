@@ -114,5 +114,12 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('SingleNoteCtrl', function($stateParams) {
+  var self = this;
+
+    var local = JSON.parse(localStorage.BAMSnoteHistory);
+    self.title = $stateParams.noteTitle;
+    self.body = local[self.title].body;
+
+    console.log($stateParams);
 });
