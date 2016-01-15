@@ -141,7 +141,7 @@ angular.module('starter.controllers', [])
   //ng-model for note body
   self.noteTitle;
   self.noteBody;
-  var listener = new webspeech.Listener();
+//   var listener = new webspeech.Listener();
 
 // self.speechRec = function(){
 //     listener.listen("en", function(text) {
@@ -158,10 +158,8 @@ angular.module('starter.controllers', [])
     //save to local storage
     $localStore.setLocalStorage(title,body)
     $state.go('app.playlists')
-
-
-
-
+    self.noteTitle = '';
+    self.noteBody = '';
   }
 
 }]);

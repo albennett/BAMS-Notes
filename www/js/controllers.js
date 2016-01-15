@@ -82,14 +82,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('NotesCtrl', ['localStore', '$interval', function($localStore, $interval) {
-  // $scope.playlists = [
-  //   { title: 'Reggae', id: 1 },
-  //   { title: 'Chill', id: 2 },
-  //   { title: 'Dubstep', id: 3 },
-  //   { title: 'Indie', id: 4 },
-  //   { title: 'Rap', id: 5 },
-  //   { title: 'Cowbell', id: 6 }
-  // ];
 
   var self = this;
 
@@ -101,9 +93,12 @@ angular.module('starter.controllers', [])
     }
 
   }, 500);
-  // console.log("LOCAL STORAGE IS ", self.noteHistory);
+  console.log("LOCAL STORAGE IS ", self.noteHistory);
 
-
+  self.delete = function(key){
+    console.log("key", key);
+    delete self.noteHistory[key];
+  }
 
   self.notes;
 
