@@ -138,9 +138,9 @@ self.speechRec = function(){
     listener.listen("en", function(text) {
            console.log("text ", text);
            document.getElementById("text").value += text;
+          self.noteBody += text;
         });
 }
-self.noteBody = "banana"
 
   self.createNote = function(title,body){
     console.log("title", title);
