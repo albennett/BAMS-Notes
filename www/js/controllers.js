@@ -72,7 +72,7 @@ angular.module('starter.controllers', [])
       },
       getLocalStorage : function(){
         var local = JSON.parse(localStorage.BAMSnoteHistory);
-        console.log("local ", local);
+        // console.log("local ", local);
         return local;
       }
 
@@ -81,7 +81,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('NotesCtrl', ['localStore', function($localStore) {
+.controller('NotesCtrl', ['localStore', '$interval', function($localStore, $interval) {
   // $scope.playlists = [
   //   { title: 'Reggae', id: 1 },
   //   { title: 'Chill', id: 2 },
@@ -94,8 +94,11 @@ angular.module('starter.controllers', [])
   var self = this;
 
   // $localStore.setLocalStorage('matt','iammatt');
-  self.noteHistory = $localStore.getLocalStorage();
-  console.log("LOCAL STORAGE IS ", self.noteHistory);
+  $interval(function(){
+    self.noteHistory = $localStore.getLocalStorage();
+
+  }, 500);
+  // console.log("LOCAL STORAGE IS ", self.noteHistory);
 
 
   self.playlists = [
