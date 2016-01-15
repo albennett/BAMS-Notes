@@ -141,15 +141,15 @@ angular.module('starter.controllers', [])
   //ng-model for note body
   self.noteTitle;
   self.noteBody;
-  var listener = new webspeech.Listener();
+//   var listener = new webspeech.Listener();
 
-self.speechRec = function(){
-    listener.listen("en", function(text) {
-           console.log("text ", text);
-           document.getElementById("text").value += text;
-          self.noteBody += text;
-        });
-}
+// self.speechRec = function(){
+//     listener.listen("en", function(text) {
+//            console.log("text ", text);
+//            document.getElementById("text").value += text;
+//           self.noteBody += text;
+//         });
+// }
 
   self.createNote = function(title,body){
     console.log("title", title);
