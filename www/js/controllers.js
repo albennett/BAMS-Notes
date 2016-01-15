@@ -124,6 +124,16 @@ angular.module('starter.controllers', [])
 
     console.log($stateParams);
 
+    self.createNote = function(title,body){
+    console.log("title", title);
+    console.log("body", body);
+
+    //save to local storage
+    $localStore.setLocalStorage(title,body)
+    // $state.go('app.playlists')
+
+  }
+
 }])
 
 .controller('AddNoteCtrl', ['localStore','$state',

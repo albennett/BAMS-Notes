@@ -1,1 +1,13 @@
 /* Empty. Add your own CSS if you like */
+p {
+  margin-top: 0;
+  text-align: center;
+
+  &:focus {
+    color: red;
+  }
+}
+
+span:focus {
+  color: red;
+}
