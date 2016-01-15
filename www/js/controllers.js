@@ -124,6 +124,15 @@ angular.module('starter.controllers', [])
 
     console.log($stateParams);
 
+    //FOR EDIT MODE
+      //have edit button in top corner
+      //when edit button is clicked
+        //set a factory variable of the title of the current note in view (maybe in state params)
+        //go to #/something/edit
+        //load the factory variable as the title
+        //grab the body associated with it and throw it in textarea
+
+
 }])
 
 .controller('AddNoteCtrl', ['localStore','$state',
