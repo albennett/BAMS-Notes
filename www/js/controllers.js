@@ -95,6 +95,8 @@ angular.module('starter.controllers', [])
 
   // $localStore.setLocalStorage('matt','iammatt');
   self.noteHistory = $localStore.getLocalStorage();
+  console.log("LOCAL STORAGE IS ", self.noteHistory);
+
 
   self.playlists = [
     { title: 'Reggae', id: 1 },
@@ -114,7 +116,7 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('SingleNoteCtrl', function($stateParams) {
+.controller('SingleNoteCtrl', ['localStore','$stateParams', function($localStore, $stateParams) {
   var self = this;
 
     var local = JSON.parse(localStorage.BAMSnoteHistory);
@@ -122,4 +124,22 @@ angular.module('starter.controllers', [])
     self.body = local[self.title].body;
 
     console.log($stateParams);
-});
+}])
+
+.controller('AddNoteCtrl', ['localStore', function($localStore) {
+  var self = this;
+  //ng-model for note body
+  self.noteTitle;
+  self.noteBody;
+
+  self.createNote = function(title,body){
+    console.log("title", title);
+    console.log("body", body);
+
+    //save to local storage
+    $localStore.setLocalStorage(title,body)
+
+
+  }
+
+}]);
