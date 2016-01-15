@@ -41,16 +41,78 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
+.factory('localStore', function(){
+    //private variables
+
+
+    return{
+      setLocalStorage : function(key,value){
+
+        //if object doesnt exist in local storage create it
+        if(localStorage.BAMSnoteHistory === undefined){
+              localStorage.BAMSnoteHistory = "{}"
+        }
+
+        //get local storage object
+        var local = JSON.parse(localStorage.BAMSnoteHistory);
+
+
+        //set key and value for new key on BAMSnoteHistory object
+        var note = {
+          "title": key,
+          "body": value
+        }
+
+        //add the new key to BAMSnoteHistory object
+        local[key] = note;
+
+        //reset localStorage
+        localStorage.BAMSnoteHistory = JSON.stringify(local);
+        console.log("local", JSON.parse(localStorage.BAMSnoteHistory));
+      },
+      getLocalStorage : function(){
+        var local = JSON.parse(localStorage.BAMSnoteHistory);
+        console.log("local ", local);
+        return local;
+      }
+
+
+    }
+
+})
+
+.controller('NotesCtrl', ['localStore', function($localStore) {
+  // $scope.playlists = [
+  //   { title: 'Reggae', id: 1 },
+  //   { title: 'Chill', id: 2 },
+  //   { title: 'Dubstep', id: 3 },
+  //   { title: 'Indie', id: 4 },
+  //   { title: 'Rap', id: 5 },
+  //   { title: 'Cowbell', id: 6 }
+  // ];
+
+  var self = this;
+
+  // $localStore.setLocalStorage('matt','iammatt');
+  self.noteHistory = $localStore.getLocalStorage();
+
+  self.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
     { title: 'Indie', id: 4 },
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
-  ];
-})
+  ]
+
+  self.notes;
+
+
+
+
+
+
+}])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
