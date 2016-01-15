@@ -127,28 +127,20 @@ angular.module('starter.controllers', [])
 }])
 
 .controller('AddNoteCtrl', ['localStore','$state',
- function($localStore,$state) {
+ function($localStore, $state) {
   var self = this;
   //ng-model for note body
   self.noteTitle;
   self.noteBody;
+  var listener = new webspeech.Listener();
 
-
-
-      self.speechRec = function(){
-        var recognizer = new webkitSpeechRecognition();
-      recognizer.lang = "en";
-      recognizer.onresult = function(event) {
-          if (event.results.length > 0) {
-              self.noteBody = self.noteBody + event.results[event.results.length-1];
-              if(result.isFinal) {
-                  console.log(result[0].transcript);
-              }
-          }
-      };
-      recognizer.start();
-
-      }
+self.speechRec = function(){
+    listener.listen("en", function(text) {
+           console.log("text ", text);
+           document.getElementById("text").value += text;
+        });
+}
+self.noteBody = "banana"
 
   self.createNote = function(title,body){
     console.log("title", title);
