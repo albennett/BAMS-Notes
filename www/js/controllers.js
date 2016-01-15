@@ -44,6 +44,7 @@ angular.module('starter.controllers', [])
 .factory('localStore', function(){
     //private variables
 
+    var titleName;
 
     return{
       setLocalStorage : function(key,value){
@@ -74,9 +75,13 @@ angular.module('starter.controllers', [])
         var local = JSON.parse(localStorage.BAMSnoteHistory);
         // console.log("local ", local);
         return local;
+      },
+      getTitle: function() {
+        return titleName;
+      },
+      setTitle: function(value) {
+        titleName = value;
       }
-
-
     }
 
 })
@@ -114,15 +119,33 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('SingleNoteCtrl', ['localStore','$stateParams',
+.controller('SingleNoteCtrl', ['localStore','$stateParams', '$state',
   function($localStore, $stateParams, $state) {
   var self = this;
+
+  self.EditMode = false;
 
     var local = JSON.parse(localStorage.BAMSnoteHistory);
     self.title = $stateParams.noteTitle;
     self.body = local[self.title].body;
+    self.editNote = function(theTitle) {
+      // console.log($stateParams.noteTitle);
+      // $localStore.setTitle($stateParams.noteTitle);
+      // $state.go("app.edit");
+      self.EditMode = true;
+
+      self.editNoteTitle =  self.title;
+      self.editNoteBody =  self.body;
+    }
 
     console.log($stateParams);
+    self.saveNote = function() {
+      self.EditMode = false;
+      $localStore.setLocalStorage(self.editNoteTitle, self.editNoteBody);
+      self.body = self.editNoteBody;
+      self.title = self.editNoteTitle;
+
+    }
 
     //FOR EDIT MODE
       //have edit button in top corner
@@ -162,4 +185,27 @@ angular.module('starter.controllers', [])
     self.noteBody = '';
   }
 
-}]);
+}])
+.controller('editNoteCtrl', ['localStore', '$stateParams', '$state',
+  function(localStore, $stateParams, $state){
+    var self = this;
+    console.log('heyo');
+    console.log(localStore.getLocalStorage());
+    var titlePassed = localStore.getTitle();
+
+    if (titlePassed === undefined) {
+     $state.go('app.playlists')
+    } else {
+      self.noteBody = localStore.getLocalStorage()[titlePassed].body;
+      self.noteTitle = titlePassed;
+
+      console.log("here inside the else")
+
+    }
+
+    console.log(titlePassed);
+    console.log(localStore.getLocalStorage()[titlePassed]);
+    self.noteTitle;
+    self.noteBody;
+  }]);
+// editNoteCtrl

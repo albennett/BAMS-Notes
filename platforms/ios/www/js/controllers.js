@@ -158,10 +158,8 @@ angular.module('starter.controllers', [])
     //save to local storage
     $localStore.setLocalStorage(title,body)
     $state.go('app.playlists')
-
-
-
-
+    self.noteTitle = '';
+    self.noteBody = '';
   }
 
 }]);

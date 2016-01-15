@@ -49,6 +49,14 @@ angular.module('starter', ['ionic', 'starter.controllers','ui.router'])
         }
       }
     })
+  .state('app.edit', {
+      url: '/edit',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/edit.html'
+        }
+      }
+    })
     .state('app.playlists', {
       url: '/playlists',
       views: {
