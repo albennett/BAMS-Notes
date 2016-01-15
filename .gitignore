@@ -1,0 +1,8 @@
+node_modules/
+bower_components/
+platforms/
+plugins/
+config.xml
+.node-version
+.editorconfig
+www/lib
