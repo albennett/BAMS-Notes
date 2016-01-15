@@ -123,6 +123,7 @@ angular.module('starter.controllers', [])
     self.body = local[self.title].body;
 
     console.log($stateParams);
+
 }])
 
 .controller('AddNoteCtrl', ['localStore','$state',
@@ -132,6 +133,23 @@ angular.module('starter.controllers', [])
   self.noteTitle;
   self.noteBody;
 
+
+
+      self.speechRec = function(){
+        var recognizer = new webkitSpeechRecognition();
+      recognizer.lang = "en";
+      recognizer.onresult = function(event) {
+          if (event.results.length > 0) {
+              self.noteBody = self.noteBody + event.results[event.results.length-1];
+              if(result.isFinal) {
+                  console.log(result[0].transcript);
+              }
+          }
+      };
+      recognizer.start();
+
+      }
+
   self.createNote = function(title,body){
     console.log("title", title);
     console.log("body", body);
@@ -139,6 +157,8 @@ angular.module('starter.controllers', [])
     //save to local storage
     $localStore.setLocalStorage(title,body)
     $state.go('app.playlists')
+
+
 
 
   }
