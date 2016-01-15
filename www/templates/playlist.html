@@ -1,7 +1,7 @@
 <ion-view view-title="Viewing: {{ single.title}}" ng-controller="SingleNoteCtrl as single">
   <ion-content>
     <h1>{{single.title}}</h1>
-    <p contenteditable="true">{{single.body}}</p>
+    <p ng-model="single.body" id="hello" contenteditable="true">{{single.body}}</p>
     <button class="button button-calm" ng-click="single.createNote(single.title, single.body)">Save Note</button>
   </ion-content>
 </ion-view>

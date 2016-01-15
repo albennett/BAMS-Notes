@@ -127,9 +127,15 @@ angular.module('starter.controllers', [])
     self.createNote = function(title,body){
     console.log("title", title);
     console.log("body", body);
+    console.log("self.body", self.body);
 
+    var helloId = document.getElementById("hello").value;
+    console.log("helloid", helloId);
+
+
+    // var newBody =
     //save to local storage
-    $localStore.setLocalStorage(title,body)
+    $localStore.setLocalStorage(title, helloId)
     // $state.go('app.playlists')
 
   }
