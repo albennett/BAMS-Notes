@@ -95,11 +95,6 @@ angular.module('starter.controllers', [])
   }, 500);
   console.log("LOCAL STORAGE IS ", self.noteHistory);
 
-  self.delete = function(key){
-    console.log("key", key);
-    delete self.noteHistory[key];
-  }
-
   self.notes;
 
 
@@ -109,7 +104,7 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('SingleNoteCtrl', ['localStore','$stateParams',
+.controller('SingleNoteCtrl', ['localStore','$stateParams', '$state',
   function($localStore, $stateParams, $state) {
   var self = this;
 
@@ -118,6 +113,16 @@ angular.module('starter.controllers', [])
     self.body = local[self.title].body;
 
     console.log($stateParams);
+
+    self.delete = function(){
+    console.log("local[self.title]", local[self.title]);
+    delete local[self.title];
+
+    localStorage.BAMSnoteHistory = JSON.stringify(local);
+    $state.go('app.playlists');
+
+  }
+
 
     //FOR EDIT MODE
       //have edit button in top corner
