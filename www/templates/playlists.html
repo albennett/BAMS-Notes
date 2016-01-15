@@ -14,7 +14,7 @@
           <span ng-show="addNote.title.$error.required && addNote.title.$touched">Title is required</span>
           <span ng-show="addNote.notes.$error.required && addNote.notes.$touched">Note cannot be blank</span>
       </div>
-      <button class="button button-calm" type="button" ng-disabled="addNote.$invalid" ng-click="setLocal()">
+      <button class="button button-calm" type="button" ng-disabled="addNote.$invalid" ng-click="notes.setLocal()">
         Save Note
       </button>
     </form>

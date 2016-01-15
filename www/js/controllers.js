@@ -54,8 +54,8 @@ angular.module('starter.controllers', [])
   var self = this;
   // Testing localStorage
   $localStorageInteractions.initNoteHistory();
-  $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
-  $localStorageInteractions.setLocalStorage('ben', 'iAmBen');
+  // $localStorageInteractions.setLocalStorage('matt', 'iAmMatt');
+  // $localStorageInteractions.setLocalStorage('ben', 'iAmBen');
   self.allNotes = $localStorageInteractions.getLocalStorage();
 
   self.updateNotePage = function(key,value){
@@ -86,12 +86,14 @@ angular.module('starter.controllers', [])
 
 .controller('NotesCtrl', ['localStorageInteractions', function($localStorageInteractions) {
   var notes = this;
-  notes.input = '';
-  notes.title = '';
-
-
-
-  notes.setLocal = $localStorageInteractions.setLocalStorage(notes.title, notes.input);
+  // notes.input = '';
+  // notes.title = '';
+  notes.setLocal = function() {
+    console.log("title input ", notes.title);
+    console.log("notes input ", notes.input);
+    $localStorageInteractions.setLocalStorage(notes.title, notes.input)
+    }
+  // notes.setLocal = $localStorageInteractions.setLocalStorage(notes.title, notes.input);
   notes.something = $localStorageInteractions.getTitle();
   console.log("notesSomethign ", notes.something);
 
