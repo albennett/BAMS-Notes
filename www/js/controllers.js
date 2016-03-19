@@ -4,8 +4,6 @@ angular.module('starter.controllers', [])
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
   // Form data for the login modal
   $scope.loginData = {};
   // Create the login modal that we will use later
@@ -86,9 +84,6 @@ angular.module('starter.controllers', [])
     self.title = $stateParams.noteTitle;
     self.body = local[self.title].body;
     self.editNote = function(theTitle) {
-      // console.log($stateParams.noteTitle);
-      // $localStore.setTitle($stateParams.noteTitle);
-      // $state.go("app.edit");
       self.EditMode = true;
       self.editNoteTitle =  self.title;
       self.editNoteBody =  self.body;
@@ -120,14 +115,6 @@ angular.module('starter.controllers', [])
   //ng-model for note body
   self.noteTitle;
   self.noteBody;
-//   var listener = new webspeech.Listener();
-// self.speechRec = function(){
-//     listener.listen("en", function(text) {
-//            console.log("text ", text);
-//            document.getElementById("text").value += text;
-//           self.noteBody += text;
-//         });
-// }
   self.createNote = function(title,body){
     console.log("title", title);
     console.log("body", body);
